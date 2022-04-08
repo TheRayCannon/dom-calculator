@@ -1,22 +1,21 @@
 const buttons = document.querySelectorAll("span");
 const screen = document.querySelector("#screen");
 const operator = document.querySelectorAll(".operator");
-const clear = document.querySelector("#clear");
 const buttonsArray = Array.from(buttons);
-document.querySelectorAll('.operator')[1].innerText = "/"
-document.querySelectorAll('.operator')[2].innerText = "*"
+operator[1].innerText = "/"
+operator[2].innerText = "*"
 
 buttonsArray.map(button => button.addEventListener("click", event => {
-    if (button.innerText !== "=") {
-        screen.innerText += button.innerText
+
+    if (button.textContent !== "=") {
+        screen.textContent += button.innerText
+    } else {
+        screen.textContent = eval(screen.textContent)
     };
-    if (button.innerText === "=") {
-        screen.innerText = eval(screen.innerText)
-    };
-    if (button.innerText === "C") {
+    if (button.textContent === "C") {
         screen.textContent = ""
     };
     if (screen.textContent === "Infinity") {
-        screen.innerText = "ERROR"
+        screen.textContent = "ERROR"
     };
 }))
