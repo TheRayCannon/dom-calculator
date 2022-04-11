@@ -1,51 +1,40 @@
-const buttons = document.querySelectorAll("span");
-const screen = document.querySelector("#screen");
-const operators = document.querySelectorAll(".operator");
-
-const allNumbers = document.querySelectorAll("span:not(.operator)");
-const clear = document.querySelector("#clear")
-
-/*
-const buttonsArray = Array.from(buttons);
-operator[1].innerText = "/"
-operator[2].innerText = "*"
-*/
+const $buttons = document.querySelectorAll("span:not(.operator)");
+const $screen = document.querySelector("#screen");
+const $operators = document.querySelectorAll(".operator");
+const $clear = document.querySelector("#clear")
 
 
+$buttons.forEach((button) => {
+    button.addEventListener("click", () => {
+        $screen.textContent += button.textContent;
+    });
+});
 
-allNumbers.forEach(number => {
-    number.addEventListener("click", event => {
-        switch (screen.textContent) {
-            case "ERROR":
-                screen.textContent = "ERROR"
-                break;
-            default:
-                screen.textContent += event.target.textContent
-        }
-    })
-})
 
-operators.forEach(operator => {
-    operator.addEventListener("click", event => {
-        switch (operator.textContent) {
+$operators.forEach(($operator) => {
+    $operator.addEventListener("click", () => {
+        switch ($operator.textContent) {
             case "=":
-                screen.textContent = eval(screen.textContent)
-                break;
-            case "X":
-                screen.textContent += "*"
+                $screen.textContent = eval($screen.textContent)
                 break;
             case "÷":
-                screen.textContent += "/"
+                $screen.textContent += "/"
+                break;
+            case "x":
+                $screen.textContent += "*"
                 break;
             default:
-                screen.textContent += event.target.textContent
+                $screen.textContent += $operator.textContent
+
+
         }
     })
 })
 
 
-clear.addEventListener("click", () => {
-    screen.textContent = ""
+
+$clear.addEventListener("click", () => {
+    $screen.textContent = ""
 })
 
 
@@ -69,4 +58,20 @@ buttonsArray.map(button => button.addEventListener("click", event => {
     if (screen.textContent[0] === "0") {
         screen.textContent = "ERROR"
     }
+
+
+ $operators.forEach(($operator) => {
+    $operator.addEventListener("click", () => {
+        if ($operator.textContent === "=") {
+            $screen.textContent = eval($screen.textContent)
+        } else if ($operator.textContent === "÷") {
+            $screen.textContent += "/"
+        } else if ($operator.textContent === "x") {
+            $screen.textContent += "*"
+        } else {
+            $screen.textContent += $operator.textContent
+        }
+    })
+})
+   
 }))*/
