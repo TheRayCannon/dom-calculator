@@ -1,8 +1,7 @@
 const $buttons = document.querySelectorAll("span:not(.operator)");
 const $screen = document.querySelector("#screen");
 const $operators = document.querySelectorAll(".operator");
-const $clear = document.querySelector("#clear")
-
+const $clear = document.querySelector("#clear");
 
 $buttons.forEach((button) => {
     button.addEventListener("click", () => {
@@ -10,12 +9,14 @@ $buttons.forEach((button) => {
     });
 });
 
-
 $operators.forEach(($operator) => {
     $operator.addEventListener("click", () => {
         switch ($operator.textContent) {
             case "=":
-                $screen.textContent = eval($screen.textContent)
+                const result = $screen.textContent = eval($screen.textContent)
+                $screen.textContent = result == Infinity ?
+                    "Error" :
+                    result
                 break;
             case "÷":
                 $screen.textContent += "/"
@@ -25,53 +26,12 @@ $operators.forEach(($operator) => {
                 break;
             default:
                 $screen.textContent += $operator.textContent
-
-
         }
-    })
-})
+    });
+});
 
+$clear.addEventListener("click", clearScreen)
 
-
-$clear.addEventListener("click", () => {
-    $screen.textContent = ""
-})
-
-
-
-
-
-/*
-buttonsArray.map(button => button.addEventListener("click", event => {
-
-    if (button.textContent !== "=") {
-        screen.textContent += button.innerText
-    } else {
-        screen.textContent = eval(screen.textContent)
-    };
-    if (button.textContent === "C") {
-        screen.textContent = ""
-    };
-    if (screen.textContent === "Infinity") {
-        screen.textContent = "ERROR"
-    };
-    if (screen.textContent[0] === "0") {
-        screen.textContent = "ERROR"
-    }
-
-
- $operators.forEach(($operator) => {
-    $operator.addEventListener("click", () => {
-        if ($operator.textContent === "=") {
-            $screen.textContent = eval($screen.textContent)
-        } else if ($operator.textContent === "÷") {
-            $screen.textContent += "/"
-        } else if ($operator.textContent === "x") {
-            $screen.textContent += "*"
-        } else {
-            $screen.textContent += $operator.textContent
-        }
-    })
-})
-   
-}))*/
+function clearScreen() {
+    $screen.textContent = "";
+}
