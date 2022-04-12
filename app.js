@@ -15,8 +15,7 @@ $operators.forEach(($operator) => {
             case "=":
                 const result = $screen.textContent = eval($screen.textContent)
                 $screen.textContent = result == Infinity ?
-                    "Error" :
-                    result
+                    "Error" : result
                 break;
             case "÷":
                 $screen.textContent += "/"
